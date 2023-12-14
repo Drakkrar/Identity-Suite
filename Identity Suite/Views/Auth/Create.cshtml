@@ -1,0 +1,74 @@
+﻿@model RegisterViewModel
+
+@{
+	ViewData["Title"] = "Create a new user";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+	<div class="card-body">
+		<h3 class="card-title text-center">Start here!</h3>
+		<form asp-controller="Auth" asp-action="Create" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+			<div class="text-danger0" asp-validation-summary="All"></div>
+
+			<div class="row mt-4">
+
+				<div class="col-sm-6">
+					<div class="mb-3">
+						<label asp-for="Name"></label>
+						<input asp-for="Name" class="form-control" />
+						<span asp-validation-for="Name" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="Birthdate"></label>
+						@* Input using ASP models, replaced by JSQuery datepicker
+						<input asp-for="Birthdate" class="form-control" placeholder="Example: 1995-9-28"/> *@
+						<input type="text" name="Birthdate" class="form-control" id="datePicker" placeholder="Example: 1995-9-28" />
+						<span asp-validation-for="Birthdate" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="PhoneNumber"></label>
+						<input asp-for="PhoneNumber" class="form-control" />
+						<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="col-sm-6">
+					<div class="mb-3">
+						<label asp-for="Email"></label>
+						<input asp-for="Email" class="form-control" />
+						<span asp-validation-for="Email" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="Password"></label>
+						<input asp-for="Password" class="form-control" />
+						<span asp-validation-for="Password" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ConfirmPassword"></label>
+						<input asp-for="ConfirmPassword" class="form-control" />
+						<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="col-sm-10 offset-2">
+					<button type="submit" class="btn btn-success w-75 btn-lg">Complete</button>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
+
+
+@section Scripts{
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
